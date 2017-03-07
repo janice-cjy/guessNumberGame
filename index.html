@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>guess number</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="bootstrap.js"></script>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+<style>
+	.container{padding:20px;}
+	.tips{font-size: 12px;padding: 0px;}
+	.form-control{width:20%;display: inline;}
+</style>
+<div class="container text-center" id="guessNumber">
+	<h1>GUESS NUMBER!</h1>
+	<input type="text" class="form-control num" name="" v-model="number" v-on:keyup.enter="counterNumber">
+	<span>
+		<button type="button" class="btn btn-primary tips" data-toggle="popover" data-trigger="focus" title="GAME RULES" data-content="Write a number in the input text and then press the 'Enter' key to sure the number.">HELP</button>
+	</span>
+	<h4>You have guessed<span class="text-danger"> {{counter}} </span>times.</h4>
+	<!-- <p v-show="isShow" class="text-danger">key is:<span> {{key}} </span></p> -->
+	<p>The key number is between<span class="text-danger"> {{start}} </span>and<span class="text-danger"> {{end}} </span></p>
+	<button class="btn btn-danger" v-on:click="repeat">new game</button>
+</div>
+<script>
+	var vm=new Vue({
+		el:"#guessNumber",
+		data:{
+			counter:0,
+			number:0,
+			key:parseInt(Math.random()*100),
+			start:0,
+			end:100,
+			isShow:false,
+		},
+		methods:{
+			counterNumber:function(){
+				this.counter++;
+				if (this.number==this.key){ 
+					alert('bomb!'+'The key is '+this.key+'!');
+					this.isDisabled=true;
+					this.isShow=true;
+				}else if(this.number<this.key&&this.number>=this.start){
+					this.start=this.number;
+					$(".num").val('');
+				}else if (this.number>this.key&&this.number<=this.end) {
+					this.end=this.number;
+					$(".num").val('');
+				}else{
+					alert('Please choose the number between '+this.start+' and '+this.end);
+					$(".num").val('');
+				}
+			},
+			repeat:function(){
+				this.number=0;
+				this.counter=0;
+				this.key=parseInt(Math.random()*100);
+				this.start=0;
+				this.end=100;
+				this.isDisabled=false;
+				this.isShow=false;
+			}
+		}
+	})
+	$(function () {
+	  $('[data-toggle="popover"]').popover()
+	})	
+</script>
+</body>
+</html>
