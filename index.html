@@ -39,14 +39,14 @@
 		methods:{
 			counterNumber:function(){
 				this.counter++;
-				if (this.number==this.key) {
+				if (this.number==this.key) 
 					alert('bomb!'+'The key is '+this.key+'!');
 					this.isDisabled=true;
 					this.isShow=true;
 				}else if(this.number<this.key&&this.number>=this.start){
 					this.start=this.number;
 					$(".num").val('');
-				}else if (this.number>this.key&&this.number<=this.end) 
+				}else if (this.number>this.key&&this.number<=this.end) {
 					this.end=this.number;
 					$(".num").val('');
 				}else{
