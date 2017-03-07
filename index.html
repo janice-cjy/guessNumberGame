@@ -3,10 +3,10 @@
 <head>
 	<title>guess number</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="bootstrap.js"></script>
+	<script type="text/javascript" src="vue.js"></script>
 </head>
 <body>
 <style>
@@ -46,7 +46,7 @@
 				}else if(this.number<this.key&&this.number>=this.start){
 					this.start=this.number;
 					$(".num").val('');
-				}else if (this.number>this.key&&this.number<=this.end) {
+				}else if (this.number>this.key&&this.number<=this.end) 
 					this.end=this.number;
 					$(".num").val('');
 				}else{
